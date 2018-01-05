@@ -5,9 +5,28 @@
     <title>Author</title>
 </head>
 <body>
-{{ author.id }}
-{{ author.first_name }}
-{{ author.last_name }}
-{{ author.email }}
+    {% if authors %}
+        {% for author in authors %}
+                <form method="POST" class="post-form">
+                    {% csrf_token %}
+                    <a href="http://127.0.0.1:8000/main/author/{{ author.0.id }}">{{ author.0.id }}</a> - {{ author.0.first_name }} - {{ author.0.last_name }} - {{ author.0.email }} - {{ author.0.literacy_period }} - {{ author.0.get_is_alive }} -  {{ author.1.id }}{{ author.1.is_alive }}
+            <button type="submit" class="save btn btn-default">Edit</button>
+                    <br>
+                </form>
+        {% endfor %}
+    {% else %}
+        {{ author.id }}
+        <br>{{ author.first_name }}
+        <br>{{ author.last_name }}
+        <br>{{ author.email }}
+        <br>{{ author.literary_period }}
+        <br>{{ author.get_is_alive }}
+
+        {% for book in books %}
+            <br>
+            <a href="http://127.0.0.1:8000/main/book/{{ book.id }}">{{ book }}</a>
+        {% endfor %}
+    {% endif %}
+
 </body>
 </html>

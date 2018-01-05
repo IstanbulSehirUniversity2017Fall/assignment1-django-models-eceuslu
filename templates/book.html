@@ -5,12 +5,23 @@
     <title>Book</title>
 </head>
 <body>
-{{ book.id }}
-{{ book.publisher }}
-{{ book.publication_date }}
-{{ book.author.id }}
-{{ book.author.first_name }}
-{{ book.author.last_name }}
-{{ book.author.email }}
+    {% if books %}
+        {% for book in books %}
+                <form method="POST" class="post-form">
+                    {% csrf_token %}
+                    <a href="http://127.0.0.1:8000/main/book/{{ book.0.id }}">{{ book.0.id }}</a> - {{ book.0.title }} - {{ book.0.author }} - {{ book.0.publisher }} - {{ book.0.publication_date }} - {{ book.0.get_is_actual }} -  {{ book.1.id }}{{ book.1.is_digital }}
+            <button type="submit" class="save btn btn-default">Edit</button>
+                    <br>
+                </form>
+        {% endfor %}
+    {% else %}
+        {{ book.id }}
+        <br>{{ book.publisher }}
+        <br>{{ book.author }}
+        <br>{{ book.publisher }}
+        <br>{{ book.publication_date }}
+        <br>{{ book.get_is_digital }}
+    {% endif %}
+
 </body>
 </html>

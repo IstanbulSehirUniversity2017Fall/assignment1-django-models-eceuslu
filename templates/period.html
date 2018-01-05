@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Period</title>
+</head>
+<body>
+    {% if periods %}
+        {% for period in periods %}
+                <form method="POST" class="post-form">
+                    {% csrf_token %}
+                    <a href="http://127.0.0.1:8000/main/period/{{ period.0.id }}">{{ period.0.id }}</a> - {{ period.0.title }} - {{ period.0.start_year }} - {{ period.0.end_year }} - {{ period.0.get_is_actual }} -  {{ period.1.id }}{{ period.1.is_actual }}
+            <button type="submit" class="save btn btn-default">Edit</button>
+                    <br>
+                </form>
+        {% endfor %}
+    {% else %}
+        {{ period.id }}
+        <br>{{ period.title }}
+        <br>{{ period.start_year }}
+        <br>{{ period.end_year }}
+        <br>{{ period.get_is_actual }}
+
+
+        {% for author in authors %}
+            <br>
+            <a href="http://127.0.0.1:8000/main/author/{{ author.id }}">{{ author }}</a>
+        {% endfor %}
+    {% endif %}
+
+</body>
+</html>

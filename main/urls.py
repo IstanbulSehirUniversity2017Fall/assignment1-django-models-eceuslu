@@ -4,5 +4,7 @@ from . import views
 
 app_name='main'
 urlpatterns = [
-    url(r'^(?P<index>.*)$', views.book, name='book'),
+    url(r'^period/(?P<period_id>.*)',views.period,name='period'),
+    url(r'^author/(?P<author_id>.*)',views.author,name='author'),
+    url(r'^book/(?P<book_id>.*)',views.book,name='book'),
     ]
